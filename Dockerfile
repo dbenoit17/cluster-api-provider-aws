@@ -1,5 +1,6 @@
 FROM registry.svc.ci.openshift.org/openshift/release:golang-1.10 AS builder
 WORKDIR /go/src/sigs.k8s.io/cluster-api-provider-aws
+RUN yum install -y glibc-static openssl-static zlib-static
 COPY . .
 # VERSION env gets set in the openshift/release image and refers to the golang version, which interfers with our own
 RUN unset VERSION \
